@@ -1,4 +1,4 @@
-package com.example.breezingbolt;
+package breezingbolt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
