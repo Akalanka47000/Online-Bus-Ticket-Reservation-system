@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class api {
-    @PostMapping("login")
+    @PostMapping("/login")
     public static String login(HttpServletRequest req, @RequestParam("email") String email, @RequestParam("password") String password, Model m){
         return AuthController.login(req, email, password, m);
     }
