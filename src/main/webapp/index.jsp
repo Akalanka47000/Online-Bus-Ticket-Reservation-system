@@ -10,6 +10,7 @@
     ></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/tailwind.config.js"></script>
+    <script src="./js/mixins/errorhandler.js"></script>
   </head>
   <body>
     <%@include file="common/navbar.jsp" %>

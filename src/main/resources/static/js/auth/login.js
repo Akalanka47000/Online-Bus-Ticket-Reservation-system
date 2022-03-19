@@ -6,7 +6,7 @@ handleErrors = () => {
       background: "#f5fdff",
       title: `<div style="font-size:23px">Invalid Credentials</div>`,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
     });
   }
 };
