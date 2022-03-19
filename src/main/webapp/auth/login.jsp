@@ -11,7 +11,7 @@
 </head>
 <body>
     <section class="flex justify-center items-center h-screen bg-gray-800">
-        <div class="max-w-md w-full bg-gray-900 rounded p-6 space-y-4">
+        <div class="max-w-2xl w-full bg-gray-900 rounded p-6 space-y-4">
             <div class="mb-4">
                 <p class="text-gray-400">Sign In</p>
                 <h2 class="text-xl font-bold text-white">Breezing BOLT</h2>

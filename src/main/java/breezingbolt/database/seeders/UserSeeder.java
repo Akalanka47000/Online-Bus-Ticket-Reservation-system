@@ -6,6 +6,7 @@ import breezingbolt.http.repository.RoleRepository;
 import breezingbolt.http.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class UserSeeder implements CommandLineRunner {
        if(userRepository.findAll().size()==0){
            List<User> users = new ArrayList<>();
            Optional<Role> adminRole = roleRepository.findById(1L);
-           users.add(new User(adminRole.get(),"Akalanka47", "Akalanka", "Perera", "akalankaperera128@gmail.com", "123", true));
+           users.add(new User(adminRole.get(),"Akalanka47", "Akalanka", "Perera", "akalankaperera128@gmail.com", BCrypt.hashpw("123456", BCrypt.gensalt()), true));
            users.forEach((user)->{
                userRepository.save(user);
            });
