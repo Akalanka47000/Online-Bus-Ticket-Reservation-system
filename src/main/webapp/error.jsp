@@ -6,8 +6,8 @@
     <script src="/js/tailwind.config.js"></script>
   </head>
   <body>
-    <section class="px-4 text-center bg-gray-800" style="height: 100vh !important;">
-      <div class="flex flex-col justify-center items-center h-full">
+    <section class="px-4 text-center bg-gradient-to-b from-gray-800 to-black" style="height: 100vh !important;">
+      <div class="flex flex-col justify-center items-center h-full pb-20">
         <div class="w-full flex justify-center items-center">
           <svg
             class=""
