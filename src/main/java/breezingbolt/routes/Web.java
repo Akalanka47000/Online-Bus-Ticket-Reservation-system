@@ -1,5 +1,6 @@
 package breezingbolt.routes;
 
+import breezingbolt.http.controllers.HomeController;
 import breezingbolt.http.controllers.ScheduleController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class Web {
 
     @Autowired
+    HomeController homeController;
+
+    @Autowired
     ScheduleController scheduleController;
 
     @GetMapping("/")
-    public String home() {
-        return "index";
+    public ModelAndView home() {
+        return homeController.getHomePage();
     }
 
     @GetMapping("/login")

@@ -1,15 +1,14 @@
 package breezingbolt.entities;
 
-
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity @Getter @Setter @RequiredArgsConstructor @NoArgsConstructor @EqualsAndHashCode
+@Entity @Getter @Setter @AllArgsConstructor @RequiredArgsConstructor @NoArgsConstructor @EqualsAndHashCode
 @Table(name= "roles")
 public class Role {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NonNull @Column(unique=true)

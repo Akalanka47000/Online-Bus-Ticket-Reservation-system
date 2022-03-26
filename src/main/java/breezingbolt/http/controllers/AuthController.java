@@ -18,6 +18,9 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private HomeController homeController;
+
     public ModelAndView signUp(User user) {
         try {
             if(user.getRole().getId() == 1) return ErrorHandler.redirect("auth/signup","You cannot register as an admin from here",HttpStatus.BAD_REQUEST);
@@ -27,6 +30,6 @@ public class AuthController {
             AppLogger.error(Arrays.toString(e.getStackTrace()));
             return ErrorHandler.redirect("auth/signup", e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ModelAndView("index", HttpStatus.OK);
+        return homeController.getHomePage();
     }
 }

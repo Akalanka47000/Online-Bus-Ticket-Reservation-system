@@ -3,21 +3,15 @@ package breezingbolt.database.seeders;
 import breezingbolt.entities.City;
 import breezingbolt.http.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CitySeeder implements CommandLineRunner {
+public class CitySeeder {
 
     @Autowired
     private CityRepository cityRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-        seed();
-    }
 
     public void seed() {
         if(cityRepository.findAll().size()==0){

@@ -9,22 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 @Aspect
 @Component
-public class ScheduleController {
+public class HomeController {
 
     @Autowired
     private CityRepository cityRepository;
 
-    public ModelAndView getSchedulePage() {
+    public ModelAndView getHomePage() {
         try {
             List<City> cities = cityRepository.findAll();
-            return new ModelAndView("schedule/schedule", new HashMap() {{
+            return new ModelAndView("index", new HashMap() {{
                 put("cityList", cities );
             }}, HttpStatus.OK);
         } catch (Exception e) {

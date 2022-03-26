@@ -3,21 +3,15 @@ package breezingbolt.database.seeders;
 import breezingbolt.entities.Role;
 import breezingbolt.http.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class RoleSeeder implements CommandLineRunner {
+public class RoleSeeder {
 
     @Autowired
     private RoleRepository roleRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-        seed();
-    }
 
     public void seed() {
         if(roleRepository.findAll().size()==0){
