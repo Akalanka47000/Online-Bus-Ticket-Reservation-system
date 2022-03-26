@@ -4,7 +4,6 @@
     <title>Error | Breezing Bolt</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/tailwind.config.js"></script>
-    <script src="./js/mixins/errorhandler.js"></script>
 </head>
 <body>
 <section class="px-4 text-center bg-gradient-to-b from-gray-800 to-black" style="height: 100vh !important;">

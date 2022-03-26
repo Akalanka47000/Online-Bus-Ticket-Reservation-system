@@ -3,7 +3,7 @@ package breezingbolt.http.controllers;
 import breezingbolt.entities.City;
 import breezingbolt.http.repository.CityRepository;
 import breezingbolt.utils.AppLogger;
-import breezingbolt.utils.ErrorHandler;
+import breezingbolt.utils.RedirectHandler;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class HomeController {
             }}, HttpStatus.OK);
         } catch (Exception e) {
             AppLogger.error(Arrays.toString(e.getStackTrace()));
-            return ErrorHandler.redirect("serverError", e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return RedirectHandler.redirectWithError("serverError", e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
