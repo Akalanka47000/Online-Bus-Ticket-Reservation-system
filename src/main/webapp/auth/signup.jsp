@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.0.2/aos.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/tailwind.config.js"></script>
-    <script src="./js/mixins/errorhandler.js"></script>
     <script src="./js/auth/signup.js"></script>
     <script src="./js/mixins/http.js"></script>
     <script src="./js/mixins/responseHandler.js"></script>
@@ -16,8 +15,9 @@
 
 <body>
     <%@include file="../common/navbar.jsp" %>
-        <section class="flex justify-center items-center h-80vh bg-gradient-to-b from-gray-800 to-black">
+        <section class="flex justify-center items-center h-83vh bg-gradient-to-b from-gray-800 to-black">
             <div id="errors" class="fixed top-0 opacity-0">${errors}</div>
+            <div id="successMessage" class="fixed top-0 opacity-0">${message}</div>
             <div class="max-w-2xl w-full bg-gray-900 rounded p-6 space-y-4">
                 <div class="mb-4">
                     <p class="text-gray-400">Sign Up</p>

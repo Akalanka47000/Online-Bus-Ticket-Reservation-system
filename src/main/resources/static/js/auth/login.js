@@ -1,4 +1,4 @@
-handleErrors = () => {
+handleLoginError = () => {
   if(window.location.search.includes('error')){
     Swal.fire({
       icon: "warning",
@@ -13,7 +13,7 @@ handleErrors = () => {
 
 const initialize = () => {
   AOS.init({ offset: 0, duration: 1000 });
-  handleErrors();
+  handleLoginError();
 };
 
 if (document.readyState !== "loading") {

@@ -10,16 +10,18 @@ const handleSubmit = (e) => {
       id: e.target.user_role.value,
     },
   });
-  sendRequest("/signup", "POST", payload, [restoreForm.bind(this, JSON.parse(payload))]);
+  sendRequest("/signup", "POST", payload, '/login', [restoreForm.bind(this, JSON.parse(payload))]);
 };
 
 restoreForm = (data) => {
-  document.getElementById("username").value = data.username;
-  document.getElementById("email").value = data.email;
-  document.getElementById("first_name").value = data.first_name;
-  document.getElementById("last_name").value = data.last_name;
-  document.getElementById("password").value = data.password;
-  document.getElementById("user_role").value = data.role.id;
+  if(document.getElementById("user_role")) {
+    document.getElementById("username").value = data.username;
+    document.getElementById("email").value = data.email;
+    document.getElementById("first_name").value = data.first_name;
+    document.getElementById("last_name").value = data.last_name;
+    document.getElementById("password").value = data.password;
+    document.getElementById("user_role").value = data.role.id;
+  }
 };
 
 const initialize = () => {

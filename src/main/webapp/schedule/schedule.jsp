@@ -14,33 +14,36 @@
         </head>
 
         <body>
-            <div class="bg-gradient-to-b from-gray-800 to-black"
-                style="display:flex;flex-direction:column;align-items: center; justify-content: center; height:100vh">
-                <div class="flex justify-center">
-                    <div class="mb-3 xl:w-96">
-                        <h1 class="text-2xl text-white">
-                            Find a Bus
-                        </h1>
+            <%@include file="../common/navbar.jsp" %>
+                <div class="bg-gradient-to-b from-gray-800 to-black h-83vh"
+                    style="display:flex;flex-direction:column;align-items: center; justify-content: center; height:100vh">
+                    <div class="flex justify-center">
+                        <div class="mb-3 xl:w-96">
+                            <h1 class="text-2xl text-white">
+                                Find a Bus
+                            </h1>
+                        </div>
                     </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="mb-3 xl:w-96">
+                    <div class="flex justify-center">
+                        <div class="mb-3 xl:w-96">
 
-                        <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="From" name="val" onchange="onOriginCitySelect(event)">>
-                            <option selected disabled hidden>From</option>
-                            <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
-                                <option id="origin-<%= city.getId() %>" value="<%= city.getId() %>">
-                                    <%= city.getName()%>
-                                </option>
-                                <% } %>
-                        </select>
+                            <select
+                                class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                aria-label="From" name="val" onchange="onOriginCitySelect(event)">>
+                                <option selected disabled hidden>From</option>
+                                <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
+                                    <option id="origin-<%= city.getId() %>" value="<%= city.getId() %>">
+                                        <%= city.getName()%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="flex justify-center">
-                    <div class="mb-3 xl:w-96">
-                        <select class="form-select appearance-none
+                    <div class="flex justify-center">
+                        <div class="mb-3 xl:w-96">
+                            <select class="form-select appearance-none
       block
       w-full
       px-3
@@ -54,20 +57,21 @@
       transition
       ease-in-out
       m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="To" onchange="onDestinationCitySelect(event)">
-                            <option selected disabled hidden>To</option>
-                            <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
-                                <option id="destination-<%= city.getId() %>" value="<%= city.getId() %>">
-                                    <%= city.getName()%>
-                                </option>
-                                <% } %>
-                        </select>
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="To"
+                                onchange="onDestinationCitySelect(event)">
+                                <option selected disabled hidden>To</option>
+                                <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
+                                    <option id="destination-<%= city.getId() %>" value="<%= city.getId() %>">
+                                        <%= city.getName()%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex justify-center">
-                    <div class="mb-3 xl:w-96">
-                        <input type="date" id="journey-date" name="journey-date" class="form-select appearance-none
+                    <div class="flex justify-center">
+                        <div class="mb-3 xl:w-96">
+                            <input type="date" id="journey-date" name="journey-date" class="form-select appearance-none
       block
       w-full
       px-3
@@ -78,22 +82,23 @@
       bg-white bg-clip-padding bg-no-repeat
       border border-solid border-gray-300 rounded transition
       ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            aria-label="Default select example">
+                                aria-label="Default select example">
+
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <!-- Using utilities: -->
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Button
+                        </button>
 
                     </div>
-                </div>
 
-                <div class="flex justify-center">
-                    <!-- Using utilities: -->
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Button
-                    </button>
+
 
                 </div>
-
-
-
-            </div>
+                <%@include file="../common/footer.jsp" %>
         </body>
 
         </html>

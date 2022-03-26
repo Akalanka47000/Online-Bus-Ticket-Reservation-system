@@ -1,3 +1,6 @@
+<%@ page import="breezingbolt.http.services.AuthService" %>
+<%@ page import="breezingbolt.http.principals.UserPrincipal" %>
+<%@ page import="java.util.Optional" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +8,7 @@
       <script src="/js/tailwind.config.js"></script>
   </head>
   <body>
+  <% Optional<UserPrincipal> currentUser = AuthService.getCurrentUser();%>
     <header class="bg-gradient-to-r from-blue-600 to-blue-500 text-white">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
@@ -30,9 +34,18 @@
                     <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/">Home</a>
                     <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/schedule">Schedule</a>
                     <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/booking">Booking</a>
-                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/management">Management</a>
                     <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/support">Support</a>
-                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/login">Login</a>
+                    <% if (!currentUser.isPresent()) { %>
+                        <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/login">Login</a>
+                        <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/signup">Signup</a>
+                    <% } else {
+                        if (currentUser.get().getRole().getId() == 1) { %>
+                            <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300" href="/management">Management</a>
+                        <% } %>
+                        <form id="logout_form" action="/logout" method="POST">
+                            <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300 cursor-pointer" onclick="document.getElementById('logout_form').submit()">Logout</a>
+                        </form>
+                    <% } %>
                 </div>
             </nav>
             <div class="relative mt-6 max-w-lg mx-auto">

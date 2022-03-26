@@ -14,11 +14,11 @@
     <script src="/js/tailwind.config.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/mixins/http.js"></script>
-    <script src="./js/mixins/errorhandler.js"></script>
     <script src="./js/mixins/responseHandler.js"></script>
   </head>
   <body class="bg-gradient-to-b from-gray-800 to-black">
     <div id="errors" class="fixed top-0 opacity-0">${errors}</div>
+    <div id="successMessage" class="fixed top-0 opacity-0">${message}</div>
     <%@include file="common/navbar.jsp" %>
     <main class="my-8">
       <div class="flex flex row justify-center items-center">
