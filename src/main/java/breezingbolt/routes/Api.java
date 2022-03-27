@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class Api {
 
     @Autowired
-    AuthController authController;
+    private AuthController authController;
 
     @PostMapping("/signup")
     public ModelAndView signUp(@Valid @RequestBody User payload){

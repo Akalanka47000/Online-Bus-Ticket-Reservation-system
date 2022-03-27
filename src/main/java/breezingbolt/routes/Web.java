@@ -11,10 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class Web {
 
     @Autowired
-    HomeController homeController;
+    private HomeController homeController;
 
     @Autowired
-    ScheduleController scheduleController;
+    private ScheduleController scheduleController;
 
     @GetMapping("/")
     public ModelAndView home() {

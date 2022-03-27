@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 public class DatabaseSeeder implements CommandLineRunner {
 
     @Autowired
-    CitySeeder citySeeder;
+    private CitySeeder citySeeder;
 
     @Autowired
-    RoleSeeder roleSeeder;
+    private RoleSeeder roleSeeder;
 
     @Autowired
-    UserSeeder userSeeder;
+    private UserSeeder userSeeder;
 
     @Override
     public void run(String... args) throws Exception {
