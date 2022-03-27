@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BreezingBoltApplicationTests {
 
     @Autowired
-    HomeController homeController;
+    private HomeController homeController;
 
     @Test
     void contextLoads() {
