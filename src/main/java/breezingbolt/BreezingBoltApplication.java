@@ -10,6 +10,4 @@ public class BreezingBoltApplication {
         SpringApplication.run(BreezingBoltApplication.class, args);
     }
 
-    System.out.println(123);
-
 }
