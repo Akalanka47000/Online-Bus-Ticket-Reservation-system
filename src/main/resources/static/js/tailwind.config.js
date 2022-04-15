@@ -7,8 +7,11 @@ tailwind.config = {
         '83vh': '83vh',
         '85vh': '85vh',
         '90vh': '90vh',
+      },
+      minHeight: {
+        '85vh': '85vh',
       }
     },
   },
-  plugins: [],
+  plugins: []
 }

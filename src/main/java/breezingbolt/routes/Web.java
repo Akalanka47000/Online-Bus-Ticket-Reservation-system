@@ -1,6 +1,7 @@
 package breezingbolt.routes;
 
 import breezingbolt.http.controllers.HomeController;
+import breezingbolt.http.controllers.ManagementController;
 import breezingbolt.http.controllers.ScheduleController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class Web {
 
     @Autowired
     private ScheduleController scheduleController;
+
+    @Autowired
+    private ManagementController managementController;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -34,5 +38,10 @@ public class Web {
     @GetMapping("/schedule")
     public ModelAndView schedule() {
         return scheduleController.getSchedulePage();
+    }
+
+    @GetMapping("/management")
+    public ModelAndView management() {
+        return managementController.getManagementPage();
     }
 }
