@@ -1,14 +1,33 @@
-handleResponse = (xmlhttp, redirectUrl, afterFunctions = []) => {
+handleResponse = (
+  xmlhttp,
+  redirectUrl,
+  afterFunctions = [],
+  successMessage
+) => {
   if (xmlhttp.readyState === 4) {
-    if (xmlhttp.responseText.includes("org.springframework.web.bind.MethodArgumentNotValidException")) {
+    if (
+      xmlhttp.responseText.includes(
+        "org.springframework.web.bind.MethodArgumentNotValidException"
+      )
+    ) {
       const res = JSON.parse(xmlhttp.responseText);
-      if (res.errors.length > 0) document.getElementById("errors").innerText = res.errors[0].defaultMessage;
+      if (res.errors.length > 0)
+        document.getElementById("errors").innerText =
+          res.errors[0].defaultMessage;
     } else {
       if (xmlhttp.status === 200) window.history.pushState("", "", redirectUrl);
       const headHTML = document.getElementsByTagName("head")[0].innerHTML;
       window.document.body.parentNode.innerHTML = xmlhttp.response;
       document.getElementsByTagName("head")[0].innerHTML = headHTML;
-      afterFunctions.forEach((func) => func());
+      if (xmlhttp.status === 200)
+        document.getElementById("successMessage").innerText = successMessage;
+      afterFunctions.forEach((func) => {
+        try {
+          func();
+        } catch (e) {
+          console.log(e);
+        }
+      });
     }
     handleErrors();
     handleSuccess();
