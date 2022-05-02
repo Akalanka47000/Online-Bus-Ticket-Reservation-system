@@ -32,6 +32,18 @@ public class UserPrincipal implements UserDetails {
         return user.getUsername();
     }
 
+    public String getEmail() {
+        return user.getEmail();
+    }
+
+    public String getFirstName(){
+        return user.getFirst_name();
+    }
+
+    public String getLastName(){
+        return user.getLast_name();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

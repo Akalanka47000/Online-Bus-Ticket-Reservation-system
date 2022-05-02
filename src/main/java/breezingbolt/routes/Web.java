@@ -3,6 +3,7 @@ package breezingbolt.routes;
 import breezingbolt.http.controllers.HomeController;
 import breezingbolt.http.controllers.ManagementController;
 import breezingbolt.http.controllers.ScheduleController;
+import breezingbolt.http.controllers.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class Web {
 
     @Autowired
     private ManagementController managementController;
+
+    @Autowired
+    private UserController userController;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -43,5 +47,10 @@ public class Web {
     @GetMapping("/management")
     public ModelAndView management() {
         return managementController.getManagementPage();
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView profile() {
+        return userController.getProfilePage();
     }
 }
