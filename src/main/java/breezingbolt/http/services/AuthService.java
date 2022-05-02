@@ -36,7 +36,7 @@ public class AuthService extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/management").authenticated()
+                .antMatchers("/management", "/profile").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

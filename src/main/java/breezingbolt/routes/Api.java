@@ -3,6 +3,7 @@ package breezingbolt.routes;
 import breezingbolt.entities.User;
 import breezingbolt.http.controllers.AuthController;
 import breezingbolt.http.controllers.ManagementController;
+import breezingbolt.http.controllers.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class Api {
     @Autowired
     private ManagementController managementController;
 
+    @Autowired
+    private UserController userController;
+
     @PostMapping("/signup")
     public ModelAndView signUp(@Valid @RequestBody User payload){
         return authController.signUp(payload);
@@ -28,6 +32,16 @@ public class Api {
     @PostMapping("/logout")
     public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
         return authController.logout(request, response);
+    }
+
+    @PostMapping("/auth/user/update")
+    public ModelAndView updateCurrentUser(@Valid @RequestBody User payload){
+        return userController.updateCurrentUser(payload);
+    }
+
+    @PostMapping("/auth/user/delete")
+    public ModelAndView deleteCurrentUser(){
+        return userController.deleteCurrentUser();
     }
 
     @PostMapping("/admin/user/add")
