@@ -9,6 +9,7 @@ tailwind.config = {
         '90vh': '90vh',
       },
       minHeight: {
+        '80vh': '80vh',
         '85vh': '85vh',
       }
     },

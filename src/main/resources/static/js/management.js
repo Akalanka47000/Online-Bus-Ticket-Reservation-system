@@ -25,7 +25,6 @@ const onEditClick = (e) => {
 };
 
 const initModal = () => {
-  console.log("initializing modal");
   const modalEl = document.getElementById("manage_user_modal");
   modal = new Modal(modalEl, {});
 };

@@ -4,8 +4,7 @@ import breezingbolt.entities.User;
 import breezingbolt.http.principals.UserPrincipal;
 import breezingbolt.http.repository.UserRepository;
 import breezingbolt.http.services.AuthService;
-import breezingbolt.utils.AppLogger;
-import breezingbolt.utils.RedirectHandler;
+import breezingbolt.utils.ExceptionHandler;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 @Aspect
@@ -30,17 +28,11 @@ public class UserController {
     private UserRepository userRepository;
 
     public ModelAndView getProfilePage() {
-        try {
-            return new ModelAndView("/profile/profile", HttpStatus.OK);
-        } catch (Exception e) {
-            AppLogger.error(Arrays.toString(e.getStackTrace()));
-            return RedirectHandler.redirectWithError("/serverError", e.getLocalizedMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ExceptionHandler.handle(() -> new ModelAndView("/profile/profile", HttpStatus.OK), "/serverError");
     }
 
     public ModelAndView updateCurrentUser(User user) {
-        try {
+        return ExceptionHandler.handle(() -> {
             Optional<UserPrincipal> currentUser = authService.getCurrentUser();
             long id = currentUser.get().getId();
             User cUser = userRepository.findById(id).get();
@@ -54,25 +46,17 @@ public class UserController {
             UserPrincipal principal = new UserPrincipal(cUser);
             Authentication authentication = new UsernamePasswordAuthenticationToken(principal, principal.getPassword(), principal.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception e) {
-            AppLogger.error(Arrays.toString(e.getStackTrace()));
-            return RedirectHandler.redirectWithError("/profile/profile", e.getLocalizedMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return this.getProfilePage();
+            return this.getProfilePage();
+        }, "/profile/profile");
     }
 
     public ModelAndView deleteCurrentUser(){
-        try {
+        return ExceptionHandler.handle(() -> {
             Optional<UserPrincipal> currentUser = authService.getCurrentUser();
             long id = currentUser.get().getId();
             User cUser = userRepository.findById(id).get();
             userRepository.delete(cUser);
-        } catch (Exception e) {
-            AppLogger.error(Arrays.toString(e.getStackTrace()));
-            return RedirectHandler.redirectWithError("/profile/profile", e.getLocalizedMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ModelAndView("/auth/login", HttpStatus.OK);
+            return new ModelAndView("/auth/login", HttpStatus.OK);
+        }, "/profile/profile");
     }
 }

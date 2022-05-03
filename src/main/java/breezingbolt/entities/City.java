@@ -3,6 +3,7 @@ package breezingbolt.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity @Getter @Setter @AllArgsConstructor @RequiredArgsConstructor @NoArgsConstructor @EqualsAndHashCode
 @Table(name= "cities")
@@ -12,4 +13,5 @@ public class City {
 
     @NonNull
     private String name;
+
 }
