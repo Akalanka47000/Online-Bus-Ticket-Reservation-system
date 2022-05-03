@@ -9,6 +9,9 @@ import breezingbolt.utils.RedirectHandler;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +51,9 @@ public class UserController {
             if (!user.getPassword().equals("") && !user.getPassword().startsWith("$2a"))
                 cUser.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
             userRepository.save(cUser);
+            UserPrincipal principal = new UserPrincipal(cUser);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(principal, principal.getPassword(), principal.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
             AppLogger.error(Arrays.toString(e.getStackTrace()));
             return RedirectHandler.redirectWithError("/profile/profile", e.getLocalizedMessage(),
