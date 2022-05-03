@@ -1,8 +1,10 @@
 package breezingbolt.routes;
 
+import breezingbolt.entities.Schedule;
 import breezingbolt.entities.User;
 import breezingbolt.http.controllers.AuthController;
 import breezingbolt.http.controllers.ManagementController;
+import breezingbolt.http.controllers.ScheduleController;
 import breezingbolt.http.controllers.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class Api {
 
     @Autowired
     private ManagementController managementController;
+
+    @Autowired
+    private ScheduleController scheduleController;
 
     @Autowired
     private UserController userController;
@@ -42,6 +47,21 @@ public class Api {
     @PostMapping("/auth/user/delete")
     public ModelAndView deleteCurrentUser(){
         return userController.deleteCurrentUser();
+    }
+
+    @PostMapping("/schedule/add")
+    public ModelAndView addSchedule(@Valid @RequestBody Schedule payload){
+        return scheduleController.addSchedule(payload);
+    }
+
+    @PostMapping("/schedule/update")
+    public ModelAndView updateSchedule(@Valid @RequestBody Schedule payload){
+        return scheduleController.updateSchedule(payload);
+    }
+
+    @PostMapping("/schedule/delete/{id}")
+    public ModelAndView deleteSchedule(@PathVariable("id") long scheduleId){
+        return scheduleController.deleteSchedule(scheduleId);
     }
 
     @PostMapping("/admin/user/add")
