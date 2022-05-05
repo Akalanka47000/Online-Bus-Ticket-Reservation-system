@@ -31,6 +31,6 @@ public class Schedule {
     @NonNull @ManyToOne @JoinColumn(name="created_by", nullable=false)
     private User created_by;
 
-    @OneToMany(mappedBy="booked_schedule")
+    @OneToMany(mappedBy= "bookedSchedule")
     private List<Booking> bookings;
 }

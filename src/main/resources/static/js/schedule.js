@@ -115,7 +115,7 @@ const handleSubmit = (e) => {
       payload,
       "/schedule",
       [
-        () => (modal = null),
+        () => window.location.reload(),
         () => sessionStorage.removeItem("tempScheduleRecordData"),
       ],
       "Schedule updated successfully"
@@ -126,7 +126,7 @@ const handleSubmit = (e) => {
       "POST",
       payload,
       "/schedule",
-      [() => (modal = null)],
+      [() => window.location.reload()],
       "Schedule added successfully"
     );
   }
@@ -141,6 +141,23 @@ onClickDelete = (e) => {
     "/schedule",
     [() => (modal = null)],
     "Schedule deleted successfully"
+  );
+};
+
+onClickBook = (e) => {
+  const id = e.target.id.split("-")[1];
+  const payload = JSON.stringify({
+    bookedSchedule: {
+      id,
+    },
+  });
+  sendRequest(
+    `/booking/add`,
+    "POST",
+    payload,
+    "/booking",
+    [()=>window.location.reload()],
+    "Booking successfully"
   );
 };
 

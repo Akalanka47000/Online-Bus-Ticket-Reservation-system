@@ -1,11 +1,9 @@
 package breezingbolt.routes;
 
+import breezingbolt.entities.Booking;
 import breezingbolt.entities.Schedule;
 import breezingbolt.entities.User;
-import breezingbolt.http.controllers.AuthController;
-import breezingbolt.http.controllers.ManagementController;
-import breezingbolt.http.controllers.ScheduleController;
-import breezingbolt.http.controllers.UserController;
+import breezingbolt.http.controllers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +23,9 @@ public class Api {
 
     @Autowired
     private ScheduleController scheduleController;
+
+    @Autowired
+    private BookingController bookingController;
 
     @Autowired
     private UserController userController;
@@ -62,6 +63,16 @@ public class Api {
     @PostMapping("/schedule/delete/{id}")
     public ModelAndView deleteSchedule(@PathVariable("id") long scheduleId){
         return scheduleController.deleteSchedule(scheduleId);
+    }
+
+    @PostMapping("/booking/add")
+    public ModelAndView addBooking(@Valid @RequestBody Booking payload){
+        return bookingController.addBooking(payload);
+    }
+
+    @PostMapping("/booking/delete/{id}")
+    public ModelAndView deleteBooking(@PathVariable("id") long bookingId){
+        return bookingController.deleteBooking(bookingId);
     }
 
     @PostMapping("/admin/user/add")

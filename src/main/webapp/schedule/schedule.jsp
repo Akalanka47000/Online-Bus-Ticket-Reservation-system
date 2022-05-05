@@ -1,7 +1,5 @@
 <%@ page import="java.util.List" %>
     <%@ page import="breezingbolt.entities.Schedule" %>
-        <%@ page import="java.util.Date" %>
-            <%@ page import="java.text.SimpleDateFormat" %>
                 <!DOCTYPE html>
                 <html>
 
