@@ -13,9 +13,8 @@ public class Booking {
 
     @NonNull @ManyToOne @JoinColumn(name="schedule_id", nullable=false)
     @NotNull(message = "Schedule cannot be empty")
-    private Schedule booked_schedule;
+    private Schedule bookedSchedule;
 
     @NonNull @ManyToOne @JoinColumn(name="user_id", nullable=false)
-    @NotNull(message = "User cannot be empty")
     private User user;
 }

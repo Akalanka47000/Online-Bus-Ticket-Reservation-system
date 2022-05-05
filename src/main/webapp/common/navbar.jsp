@@ -47,24 +47,27 @@
                                         href="/">Home</a>
                                     <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
                                         href="/schedule">Schedule</a>
-                                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                        href="/booking">Booking</a>
-                                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                        href="/support">Support</a>
-                                    <% if (!currentUser.isPresent()) { %>
+                                    <% if (currentUser.isPresent()) { %>
                                         <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                            href="/login">Login</a>
-                                        <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                            href="/signup">Signup</a>
-                                        <% } else { if (currentUser.get().getRole().getId()==1) { %>
+                                            href="/booking">Booking</a>
+                                        <% } %>
+
                                             <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                                href="/management">Management</a>
-                                            <% } %>
-                                                <form id="logout_form" action="/logout" method="POST">
-                                                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300 cursor-pointer"
-                                                        onclick="document.getElementById('logout_form').submit()">Logout</a>
-                                                </form>
-                                                <% } %>
+                                                href="/support">Support</a>
+                                            <% if (!currentUser.isPresent()) { %>
+                                                <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
+                                                    href="/login">Login</a>
+                                                <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
+                                                    href="/signup">Signup</a>
+                                                <% } else { if (currentUser.get().getRole().getId()==1) { %>
+                                                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
+                                                        href="/management">Management</a>
+                                                    <% } %>
+                                                        <form id="logout_form" action="/logout" method="POST">
+                                                            <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300 cursor-pointer"
+                                                                onclick="document.getElementById('logout_form').submit()">Logout</a>
+                                                        </form>
+                                                        <% } %>
                                 </div>
                             </nav>
                             <div class="relative mt-6 max-w-lg mx-auto">

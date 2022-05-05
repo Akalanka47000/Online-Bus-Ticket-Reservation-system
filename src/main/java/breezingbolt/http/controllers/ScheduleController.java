@@ -15,9 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Aspect
 @Component
@@ -68,9 +68,18 @@ public class ScheduleController {
         }, "/schedule/schedule", this::schedulePageInjections);
     }
 
-    private HashMap schedulePageInjections() {
+    public HashMap schedulePageInjections() {
         List<Schedule> schedule = scheduleRepository.findAll();
         List<City> cities = cityRepository.findAll();
+
+        Collections.sort(schedule, (o1, o2) -> {
+            try {
+                return new SimpleDateFormat("hh:mm").parse(o1.getTime()).compareTo(new SimpleDateFormat("hh:mm").parse(o2.getTime()));
+            } catch (ParseException e) {
+                return 0;
+            }
+        });
+
         return new HashMap() {
             {
                 put("schedule", schedule);
