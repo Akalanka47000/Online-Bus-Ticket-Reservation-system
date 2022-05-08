@@ -5,6 +5,7 @@
 
     <head>
       <title>Home | Breezing Bolt</title>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.0.2/aos.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -18,6 +19,7 @@
     <body class="bg-gradient-to-b from-gray-800 to-black">
       <div id="errors" class="fixed top-0 opacity-0">${errors}</div>
       <div id="successMessage" class="fixed top-0 opacity-0">${message}</div>
+      <div id="routeAvailable" class="fixed top-0 opacity-0">${routeAvailable}</div>
       <%@include file="common/navbar.jsp" %>
         <main class="min-h-80vh w-full my-8 flex flex-col justify-center items-center">
           <div class="w-full flex justify-center items-center mb-10">
@@ -25,7 +27,7 @@
               onsubmit="handleSubmit(event)">
               <select
                 class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding md:mr-1 mb-2 md:mb-0 bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="origin_city" name="origin_city" required>
+                id="origin_city" name="origin_city_id" required>
                 <option value="" selected disabled hidden>Select Origin City</option>
                 <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
                   <option id="origin-<%= city.getId() %>" value="<%= city.getId() %>">
@@ -35,7 +37,7 @@
               </select>
               <select
                 class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding md:ml-1 md:mr-1 mb-2 md:mb-0 bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="destination_city" name="destination_city" required>
+                id="destination_city" name="destination_city_id" required>
                 <option value="" selected disabled hidden>Select Destination City</option>
                 <% for(City city : (List<City>) request.getAttribute("cityList")) { %>
                   <option id="destination-<%= city.getId() %>" value="<%= city.getId() %>">

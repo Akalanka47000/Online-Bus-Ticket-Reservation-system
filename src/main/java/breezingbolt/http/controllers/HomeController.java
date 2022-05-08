@@ -22,7 +22,7 @@ public class HomeController {
         return ExceptionHandler.handle(() -> new ModelAndView("index", this.homePageInjections(), HttpStatus.OK), "serverError");
     }
 
-    private HashMap homePageInjections() {
+    public HashMap homePageInjections() {
         List<City> cities = cityRepository.findAll();
         return new HashMap() {
             {

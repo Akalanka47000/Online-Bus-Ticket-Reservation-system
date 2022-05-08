@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @Controller
 public class Api {
@@ -63,6 +64,11 @@ public class Api {
     @PostMapping("/schedule/delete/{id}")
     public ModelAndView deleteSchedule(@PathVariable("id") long scheduleId){
         return scheduleController.deleteSchedule(scheduleId);
+    }
+
+    @PostMapping("/schedule/availability")
+    public ModelAndView getAvailability(@RequestBody HashMap payload){
+        return scheduleController.getAvailability(Long.parseLong((String) payload.get("origin_city_id")), Long.parseLong((String) payload.get("destination_city_id")));
     }
 
     @PostMapping("/booking/add")

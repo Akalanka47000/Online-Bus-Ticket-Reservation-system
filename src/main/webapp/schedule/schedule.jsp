@@ -76,8 +76,8 @@
                                                             <span
                                                                 class="inline-block w-1/3 md:hidden font-bold">Origin</span><span
                                                                 id="origin-item-<%= schedule.getId()%>"
-                                                                name="origin-id-<%= schedule.getOrigin_city().getId()%>">
-                                                                <%= schedule.getOrigin_city().getName()%>
+                                                                name="origin-id-<%= schedule.getOriginCity().getId()%>">
+                                                                <%= schedule.getOriginCity().getName()%>
                                                             </span>
                                                         </td>
                                                         <td
@@ -85,8 +85,8 @@
                                                             <span
                                                                 class="inline-block w-1/3 md:hidden font-bold">Destination
                                                             </span><span id="destination-item-<%= schedule.getId()%>"
-                                                                name="destination-id-<%= schedule.getDestination_city().getId()%>">
-                                                                <%= schedule.getDestination_city().getName()%>
+                                                                name="destination-id-<%= schedule.getDestinationCity().getId()%>">
+                                                                <%= schedule.getDestinationCity().getName()%>
                                                             </span>
                                                         </td>
                                                         <td
