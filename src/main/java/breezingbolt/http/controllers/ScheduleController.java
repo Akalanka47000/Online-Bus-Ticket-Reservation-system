@@ -32,6 +32,9 @@ public class ScheduleController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private HomeController homeController;
+
     public ModelAndView getSchedulePage() {
         return ExceptionHandler.handle(
                 () -> new ModelAndView("/schedule/schedule", schedulePageInjections(), HttpStatus.OK), "/serverError",
@@ -52,8 +55,8 @@ public class ScheduleController {
     public ModelAndView updateSchedule(Schedule schedule) {
         return ExceptionHandler.handle(() -> {
             Schedule scheduleToUpdate = scheduleRepository.findById(schedule.getId()).get();
-            scheduleToUpdate.setOrigin_city(schedule.getOrigin_city());
-            scheduleToUpdate.setDestination_city(schedule.getDestination_city());
+            scheduleToUpdate.setOriginCity(schedule.getOriginCity());
+            scheduleToUpdate.setDestinationCity(schedule.getDestinationCity());
             scheduleToUpdate.setTime(schedule.getTime());
             scheduleToUpdate.setBus_capacity(schedule.getBus_capacity());
             scheduleRepository.save(scheduleToUpdate);
@@ -66,6 +69,20 @@ public class ScheduleController {
             scheduleRepository.deleteById(id);
             return this.getSchedulePage();
         }, "/schedule/schedule", this::schedulePageInjections);
+    }
+
+    public ModelAndView getAvailability(long origin_city_id, long destination_city_id) {
+        Optional<Schedule> schedule = scheduleRepository.findByOriginCityAndDestinationCity(cityRepository.findById(origin_city_id).get(), cityRepository.findById(destination_city_id).get());
+        Boolean availability;
+        if (schedule.isPresent()) availability = true;
+        else availability = false;
+        HashMap availabilityMap = new HashMap() {
+            {
+                put("routeAvailable", availability.toString());
+            }
+        };
+        availabilityMap.putAll(homeController.homePageInjections());
+        return ExceptionHandler.handle(() -> new ModelAndView("/index", availabilityMap , HttpStatus.OK), "/serverError");
     }
 
     public HashMap schedulePageInjections() {

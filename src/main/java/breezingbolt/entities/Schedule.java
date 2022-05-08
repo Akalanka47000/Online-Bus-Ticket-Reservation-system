@@ -14,11 +14,11 @@ public class Schedule {
 
     @NonNull @ManyToOne @JoinColumn(name="origin_city_id", nullable=false)
     @NotNull(message = "Origin City cannot be empty")
-    private City origin_city;
+    private City originCity;
 
     @NonNull @ManyToOne @JoinColumn(name="destination_city_id", nullable=false)
     @NotNull(message = "Destination City cannot be empty")
-    private City destination_city;
+    private City destinationCity;
 
     @NonNull
     @NotNull(message = "Time cannot be empty")

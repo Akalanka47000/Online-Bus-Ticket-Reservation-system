@@ -58,7 +58,7 @@
                                                             <span
                                                                 class="inline-block w-1/3 md:hidden font-bold">Origin</span><span
                                                                 id="origin-item-<%= booking.getId()%>">
-                                                                <%= booking.getBookedSchedule().getOrigin_city() == null ? null: booking.getBookedSchedule().getOrigin_city().getName()%>
+                                                                <%= booking.getBookedSchedule().getOriginCity() == null ? null: booking.getBookedSchedule().getOriginCity().getName()%>
                                                             </span>
                                                         </td>
                                                         <td
@@ -66,7 +66,7 @@
                                                             <span
                                                                 class="inline-block w-1/3 md:hidden font-bold">Destination
                                                             </span><span id="destination-item-<%= booking.getId()%>">
-                                                                <%= booking.getBookedSchedule().getOrigin_city() == null ? null: booking.getBookedSchedule().getDestination_city().getName()%>
+                                                                <%= booking.getBookedSchedule().getOriginCity() == null ? null: booking.getBookedSchedule().getDestinationCity().getName()%>
                                                             </span>
                                                         </td>
     

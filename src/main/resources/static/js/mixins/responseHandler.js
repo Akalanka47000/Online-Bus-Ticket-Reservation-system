@@ -35,7 +35,10 @@ handleResponse = (
 };
 
 handleErrors = () => {
-  if (document.getElementById("errors").innerText !== "") {
+  if (
+    document.getElementById("errors").innerText !== "" &&
+    document.getElementById("successMessage").innerText != "undefined"
+  ) {
     Swal.fire({
       icon: "warning",
       heightAuto: false,
@@ -50,7 +53,10 @@ handleErrors = () => {
 };
 
 handleSuccess = () => {
-  if (document.getElementById("successMessage").innerText !== "") {
+  if (
+    document.getElementById("successMessage").innerText !== "" &&
+    document.getElementById("successMessage").innerText != "undefined"
+  ) {
     Swal.fire({
       icon: "success",
       heightAuto: false,

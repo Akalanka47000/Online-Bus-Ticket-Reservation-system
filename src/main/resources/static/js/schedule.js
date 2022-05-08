@@ -97,10 +97,10 @@ const handleSubmit = (e) => {
     id: sessionStorage.getItem("tempScheduleRecordData")
       ? JSON.parse(sessionStorage.getItem("tempScheduleRecordData")).id
       : null,
-    origin_city: {
+    originCity: {
       id: e.target.origin_city_id.value,
     },
-    destination_city: {
+    destinationCity: {
       id: e.target.destination_city_id.value,
     },
     bus_capacity: e.target.bus_capacity.value,
