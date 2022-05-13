@@ -1,11 +1,11 @@
 package breezingbolt.http.controllers;
 
-import breezingbolt.entities.City;
-import breezingbolt.entities.Schedule;
+import breezingbolt.entities.Support;
 import breezingbolt.entities.User;
 import breezingbolt.http.principals.UserPrincipal;
 import breezingbolt.http.repository.CityRepository;
 import breezingbolt.http.repository.ScheduleRepository;
+import breezingbolt.http.repository.SupportRepository;
 import breezingbolt.http.repository.UserRepository;
 import breezingbolt.http.services.AuthService;
 import breezingbolt.utils.ExceptionHandler;
@@ -15,8 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Aspect
@@ -41,7 +39,7 @@ public class SupportController {
     public ModelAndView getSupportPage() {
         return ExceptionHandler.handle(
                 () -> new ModelAndView("/support/support", supportPageInjections(), HttpStatus.OK), "/serverError",
-                this::schedulePageInjections);
+                this::supportPageInjections);
     }
 
     public ModelAndView addSupport(Support support) {
@@ -58,9 +56,8 @@ public class SupportController {
     public ModelAndView updateSupport(Support support) {
         return ExceptionHandler.handle(() -> {
             Support supportToUpdate = supportRepository.findById(support.getId()).get();
-            supportToUpdate.setTicketID(support.getTicketID());
-            supportToUpdate.setCreatedBy(support.getCreatedBy());
-            supportToUpdate.setDescription(support.getDescription());
+            supportToUpdate.setTitle(support.getTitle());
+            supportToUpdate.setBody(support.getBody());
             supportRepository.save(supportToUpdate);
             return this.getSupportPage();
         }, "/support/support", this::supportPageInjections);
@@ -70,35 +67,11 @@ public class SupportController {
         return ExceptionHandler.handle(() -> {
             supportRepository.deleteById(id);
             return this.getSupportPage();
-        }, "/schedule/schedule", this::supportPageInjections);
-    }
-
-    public ModelAndView getAvailability(long origin_city_id, long destination_city_id) {
-        Optional<Support> support = supportRepository.findByOriginCityAndDestinationCity(cityRepository.findById(origin_city_id).get(), cityRepository.findById(destination_city_id).get());
-        Boolean availability;
-        if (support.isPresent()) availability = true;
-        else availability = false;
-        HashMap availabilityMap = new HashMap() {
-            {
-                put("routeAvailable", availability.toString());
-            }
-        };
-        availabilityMap.putAll(homeController.homePageInjections());
-        return ExceptionHandler.handle(() -> new ModelAndView("/index", availabilityMap , HttpStatus.OK), "/serverError");
+        }, "/support/support", this::supportPageInjections);
     }
 
     public HashMap supportPageInjections() {
-        List<Support> support = scheduleRepository.findAll();
-        List<City> cities = cityRepository.findAll();
-
-        Collections.sort(support, (o1, o2) -> {
-            try {
-                return new SimpleDateFormat("hh:mm").parse(o1.getTime()).compareTo(new SimpleDateFormat("hh:mm").parse(o2.getTime()));
-            } catch (ParseException e) {
-                return 0;
-            }
-        });
-
+        List<Support> support = supportRepository.findAll();
         return new HashMap() {
             {
                 put("support", support);

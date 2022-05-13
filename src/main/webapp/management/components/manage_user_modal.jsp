@@ -3,7 +3,6 @@
 <html>
 
 <head>
-    <title>Schedules | Breezing Bolt</title>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.0.2/aos.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>

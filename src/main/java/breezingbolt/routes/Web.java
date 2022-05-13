@@ -22,6 +22,9 @@ public class Web {
     private ManagementController managementController;
 
     @Autowired
+    private SupportController supportController;
+
+    @Autowired
     private UserController userController;
 
     @GetMapping("/")
@@ -44,7 +47,7 @@ public class Web {
         return scheduleController.getSchedulePage();
     }
 
-    @GetMapping("/ticket")
+    @GetMapping("/support")
     public ModelAndView ticket() {return supportController.getSupportPage();
     }
 
