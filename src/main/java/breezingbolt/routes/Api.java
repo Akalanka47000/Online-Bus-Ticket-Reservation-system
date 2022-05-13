@@ -2,6 +2,7 @@ package breezingbolt.routes;
 
 import breezingbolt.entities.Booking;
 import breezingbolt.entities.Schedule;
+import breezingbolt.entities.Support;
 import breezingbolt.entities.User;
 import breezingbolt.http.controllers.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,13 @@ public class Api {
     private ScheduleController scheduleController;
 
     @Autowired
+    private ScheduleController ticketController;
+
+    @Autowired
     private BookingController bookingController;
+
+    @Autowired
+    private SupportController supportController;
 
     @Autowired
     private UserController userController;
@@ -64,6 +71,21 @@ public class Api {
     @PostMapping("/schedule/delete/{id}")
     public ModelAndView deleteSchedule(@PathVariable("id") long scheduleId){
         return scheduleController.deleteSchedule(scheduleId);
+    }
+
+    @PostMapping("/support/add")
+    public ModelAndView addSupport(@Valid @RequestBody Support payload){
+        return supportController.addSupport(payload);
+    }
+
+    @PostMapping("/support/update")
+    public ModelAndView updateSupport(@Valid @RequestBody Support payload){
+        return supportController.updateSupport(payload);
+    }
+
+    @PostMapping("/support/delete/{id}")
+    public ModelAndView deleteSupport(@PathVariable("id") long ticketId){
+        return supportController.deleteSupport(ticketId);
     }
 
     @PostMapping("/schedule/availability")
