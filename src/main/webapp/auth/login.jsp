@@ -31,7 +31,7 @@
                     <div>
                         <input
                             class="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600 mb-2"
-                            type="text" placeholder="Password" name="password" required>
+                            type="password" placeholder="Password" name="password" required>
                     </div>
                     <div>
                         <button

@@ -26,6 +26,9 @@ public class Api {
     private ScheduleController scheduleController;
 
     @Autowired
+    private ScheduleController ticketController;
+
+    @Autowired
     private BookingController bookingController;
 
     @Autowired

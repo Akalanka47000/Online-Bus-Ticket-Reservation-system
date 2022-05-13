@@ -52,8 +52,11 @@
                                             href="/booking">Booking</a>
                                         <% } %>
 
-                                            <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
-                                                href="/support">Support</a>
+                                    <% if (currentUser.isPresent()) { %>
+                                    <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
+                                       href="/support">Support</a>
+                                    <% } %>
+
                                             <% if (!currentUser.isPresent()) { %>
                                                 <a class="mt-3 text-gray-100 hover:underline hover:text-white sm:mx-3 sm:mt-0 transition ease duration-300"
                                                     href="/login">Login</a>

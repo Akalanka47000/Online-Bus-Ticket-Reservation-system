@@ -44,6 +44,10 @@ public class Web {
         return scheduleController.getSchedulePage();
     }
 
+    @GetMapping("/ticket")
+    public ModelAndView ticket() {return supportController.getSupportPage();
+    }
+
     @GetMapping("/booking")
     public ModelAndView booking() {
         return bookingController.getBookingPage();
